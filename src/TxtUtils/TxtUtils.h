@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <iostream>
 
-namespace TxtUtils {
+namespace txtUtils {
 TXTUTILS_EXPORT std::string loadTextFile(std::string const& fileName);
 TXTUTILS_EXPORT bool        isNan(std::string const& text);
 TXTUTILS_EXPORT bool        isInfinity(std::string const& text);

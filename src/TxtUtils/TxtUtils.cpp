@@ -7,7 +7,7 @@
 
 using namespace mealyMachine;
 
-std::string TxtUtils::loadTextFile(std::string const&fileName){
+std::string txtUtils::loadTextFile(std::string const&fileName){
   std::ifstream f(fileName.c_str());
   if(!f.is_open()){
     throw std::runtime_error(std::string("cannot open file: ")+fileName);
@@ -18,16 +18,16 @@ std::string TxtUtils::loadTextFile(std::string const&fileName){
   return str;
 }
 
-bool TxtUtils::isNan(std::string const&text){
+bool txtUtils::isNan(std::string const&text){
   return std::set<std::string>({"NAN","Nan","nan"}).count(text)>0;
 }
 
-bool TxtUtils::isInfinity(std::string const&text){
+bool txtUtils::isInfinity(std::string const&text){
   return std::set<std::string>({"inf","Inf","INF","+inf","+Inf","+INF","-inf","-Inf","-INF"}).count(text)>0;
 }
 
 
-bool TxtUtils::isFloat(std::string const&text){
+bool txtUtils::isFloat(std::string const&text){
   if(isNan(text))return true;
   if(isInfinity(text))return true;
   MealyMachine mm;
@@ -66,7 +66,7 @@ bool TxtUtils::isFloat(std::string const&text){
   return mm.match(text.c_str());
 }
 
-bool TxtUtils::isDouble(std::string const&text){
+bool txtUtils::isDouble(std::string const&text){
   if(isNan(text))return true;
   if(isInfinity(text))return true;
   MealyMachine mm;
@@ -104,15 +104,15 @@ bool TxtUtils::isDouble(std::string const&text){
 
 }
 
-bool TxtUtils::isFloatingPoint(std::string const&text){
+bool txtUtils::isFloatingPoint(std::string const&text){
   return isFloat(text) || isDouble(text);
 }
 
-bool TxtUtils::isIntegral(std::string const&text){
+bool txtUtils::isIntegral(std::string const&text){
   return isInt(text) || isUint(text);
 }
 
-bool TxtUtils::isInt(std::string const&text){
+bool txtUtils::isInt(std::string const&text){
   MealyMachine mm;
 
   auto start = mm.addState();
@@ -131,7 +131,7 @@ bool TxtUtils::isInt(std::string const&text){
   return mm.match(text.c_str());
 }
 
-bool TxtUtils::isUint(std::string const&text){
+bool txtUtils::isUint(std::string const&text){
   MealyMachine mm;
 
   auto start = mm.addState();
@@ -150,6 +150,6 @@ bool TxtUtils::isUint(std::string const&text){
   return mm.match(text.c_str());
 }
 
-bool TxtUtils::isString(std::string const&){
+bool txtUtils::isString(std::string const&){
   return true;
 }
